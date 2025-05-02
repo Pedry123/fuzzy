@@ -184,22 +184,18 @@ if __name__ == '__main__':
     pontos_temperatura = variavel_temperatura.pontos_discretizacao
     pontos_volume = variavel_volume.pontos_discretizacao
     pontos_pressao = variavel_pressao.pontos_discretizacao
-  
-    x_temp = variavel_temperatura.pontos_discretizacao
-    x_vol = variavel_volume.pontos_discretizacao
-    x_p = variavel_pressao.pontos_discretizacao
 
-    pertinencias_temperatura_ba = trapezio_descendente(x_temp, 800, 900, 1000)
-    pertinencias_temperatura_me = triangular(x_temp, 900, 1000, 1100)
+    pertinencias_temperatura_ba = trapezio_descendente(pontos_temperatura, 800, 900, 1000)
+    pertinencias_temperatura_me = triangular(pontos_temperatura, 900, 1000, 1100)
     pertinencias_temperatura_al = trapezio_ascendente(x_temp, 1000, 1100, 1200)
 
-    pertinencias_volume_pe = trapezio_descendente(x_vol, 2, 4, 6)
-    pertinencias_volume_me = triangular(x_vol, 4, 6, 8)
-    pertinencias_volume_gr = trapezio_ascendente(x_vol, 6, 8, 12)
+    pertinencias_volume_pe = trapezio_descendente(pontos_volume, 2, 4, 6)
+    pertinencias_volume_me = triangular(pontos_volume, 4, 6, 8)
+    pertinencias_volume_gr = trapezio_ascendente(pontos_volume, 6, 8, 12)
 
-    pertinencias_pressao_ba = trapezio_descendente(x_p, 4, 5, 8)
-    pertinencias_pressao_me = triangular(x_p, 6, 8, 10)
-    pertinencias_pressao_al = trapezio_ascendente(x_p, 8, 11, 12)
+    pertinencias_pressao_ba = trapezio_descendente(pontos_pressao, 4, 5, 8)
+    pertinencias_pressao_me = triangular(pontos_pressao, 6, 8, 10)
+    pertinencias_pressao_al = trapezio_ascendente(pontos_pressao, 8, 11, 12)
 
     pertinencia_temperatura = variavel_temperatura.fuzzificar_variavel(temperatura)
     pertinencia_volume = variavel_volume.fuzzificar_variavel(volume)
