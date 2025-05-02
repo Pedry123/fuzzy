@@ -1,4 +1,4 @@
-import sys
+import os
 import numpy as np
 
 regras_pressao = {
@@ -187,7 +187,7 @@ if __name__ == '__main__':
 
     pertinencias_temperatura_ba = trapezio_descendente(pontos_temperatura, 800, 900, 1000)
     pertinencias_temperatura_me = triangular(pontos_temperatura, 900, 1000, 1100)
-    pertinencias_temperatura_al = trapezio_ascendente(x_temp, 1000, 1100, 1200)
+    pertinencias_temperatura_al = trapezio_ascendente(pontos_temperatura, 1000, 1100, 1200)
 
     pertinencias_volume_pe = trapezio_descendente(pontos_volume, 2, 4, 6)
     pertinencias_volume_me = triangular(pontos_volume, 4, 6, 8)
@@ -215,18 +215,21 @@ if __name__ == '__main__':
     print(f"Pressão MPM: {pressao_mpm:.2f} atm")
     print('Ativação de pressão nos conjuntos de termos:', ativacao)
 
-    #plot
+    # plot
     import matplotlib.pyplot as plt
 
-    plt.plot(x_p, pertinencias_pressao_ba)
-    plt.plot(x_p, pertinencias_pressao_me)
-    plt.plot(x_p, pertinencias_pressao_al)
-    plt.plot(x_p, pertinencias_agregadas)
-    plt.fill_between(x_p, 0, pertinencias_agregadas, alpha=0.2, color='red')
+    plt.plot(pontos_pressao, pertinencias_pressao_ba)
+    plt.plot(pontos_pressao, pertinencias_pressao_me)
+    plt.plot(pontos_pressao, pertinencias_pressao_al)
+    plt.plot(pontos_pressao, pertinencias_agregadas)
+    plt.fill_between(pontos_pressao, 0, pertinencias_agregadas, alpha=0.2, color='red')
     plt.legend(['baixa', 'média', 'alta', 'agregada'])
     plt.title('Agregação Final')
     plt.xlabel('Pressão')
     plt.ylabel('Pertinência')
+
+    # salvar
+    os.makedirs('imagens/', exist_ok=True)
     plt.savefig(f'imagens/{nome_fig}.png')
    
 
